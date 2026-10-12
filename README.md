@@ -97,10 +97,12 @@ appartenant à des tiers sans autorisation.
 
 ## Politique de confidentialité
 
-L'application ne collecte aucune donnée et traite tout sur l'appareil. La
-politique de confidentialité est disponible dans `docs/politique-confidentialite.md`
-(version HTML : `docs/index.html`), prête à être hébergée via GitHub Pages pour
-fournir l'URL publique exigée par le Play Store.
+L'application ne collecte aucune donnée et traite tout sur l'appareil.
+
+- **Politique de confidentialité** : https://lwilly3.github.io/pdf-deverrouilleur/
+  (sources : `docs/politique-confidentialite.md`, `docs/index.html`)
+- **Conditions d'utilisation** : https://lwilly3.github.io/pdf-deverrouilleur/conditions.html
+  (sources : `docs/conditions-utilisation.md`, `docs/conditions.html`)
 
 ## Licence
 
