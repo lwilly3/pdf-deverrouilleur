@@ -52,6 +52,20 @@ système Android ou par vous à tout moment, via les réglages de l'appareil.
 L'application ne s'adresse pas aux enfants et ne collecte sciemment aucune
 donnée les concernant, puisqu'elle ne collecte aucune donnée.
 
+## Usage autorisé et responsabilité
+
+PDF Déverrouilleur est destiné à retirer les protections de documents PDF que
+vous **possédez** ou que vous êtes **légalement autorisé à modifier**.
+
+En utilisant l'application, vous vous engagez à ne l'employer que sur de tels
+documents. Vous êtes seul responsable de l'usage que vous en faites. Le
+développeur décline toute responsabilité en cas d'utilisation non autorisée,
+ou d'une utilisation portant atteinte aux droits de tiers ou à toute loi
+applicable.
+
+L'application n'est pas un outil de contournement : elle exige le mot de passe
+d'ouverture des fichiers chiffrés et ne tente jamais de le deviner.
+
 ## Modifications de cette politique
 
 Cette politique peut être mise à jour. Toute modification sera publiée à cette
