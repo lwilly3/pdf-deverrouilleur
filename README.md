@@ -95,6 +95,13 @@ de passe d'ouverture pour les fichiers chiffrés et ne tente jamais de le
 deviner. Ne l'utilisez pas pour contourner les protections de documents
 appartenant à des tiers sans autorisation.
 
+## Politique de confidentialité
+
+L'application ne collecte aucune donnée et traite tout sur l'appareil. La
+politique de confidentialité est disponible dans `docs/politique-confidentialite.md`
+(version HTML : `docs/index.html`), prête à être hébergée via GitHub Pages pour
+fournir l'URL publique exigée par le Play Store.
+
 ## Licence
 
 MIT. Voir le fichier `LICENSE`.
