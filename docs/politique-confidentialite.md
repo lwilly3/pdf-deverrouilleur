@@ -62,4 +62,4 @@ même adresse, avec une nouvelle date de mise à jour.
 Pour toute question concernant cette politique, contactez le développeur à
 l'adresse suivante :
 
-**[À COMPLÉTER : votre adresse e-mail de contact]**
+**getpiolcontact@gmail.com**
