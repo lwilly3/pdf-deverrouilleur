@@ -64,6 +64,13 @@ fun EcranPrincipal() {
     var motDePasseErreur by remember { mutableStateOf(false) }
     var fichierResultat by remember { mutableStateOf<File?>(null) }
     var messageErreur by remember { mutableStateOf("") }
+    var afficherMentions by remember { mutableStateOf(false) }
+
+    // Écran des mentions open source (crédits), affiché par-dessus le reste.
+    if (afficherMentions) {
+        EcranMentions(onRetour = { afficherMentions = false })
+        return
+    }
 
     // Fonction qui lance le déverrouillage sur un thread de fond.
     fun lancer(uri: Uri, mdp: String) {
@@ -120,7 +127,12 @@ fun EcranPrincipal() {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("PDF Déverrouilleur", fontWeight = FontWeight.SemiBold) }
+                title = { Text("PDF Déverrouilleur", fontWeight = FontWeight.SemiBold) },
+                actions = {
+                    IconButton(onClick = { afficherMentions = true }) {
+                        Icon(Icons.Filled.Info, contentDescription = "À propos et mentions")
+                    }
+                }
             )
         }
     ) { padding ->
@@ -308,6 +320,91 @@ private fun ContenuErreur(message: String, onRecommencer: () -> Unit) {
     Spacer(Modifier.height(12.dp))
     Button(onClick = onRecommencer, modifier = Modifier.fillMaxWidth().height(52.dp)) {
         Text("Réessayer")
+    }
+}
+
+/* ----- Écran des mentions open source (crédits) ----- */
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun EcranMentions(onRetour: () -> Unit) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("À propos et mentions") },
+                navigationIcon = {
+                    IconButton(onClick = onRetour) {
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Retour")
+                    }
+                }
+            )
+        }
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .padding(padding)
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Text("PDF Déverrouilleur", style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold)
+            Text(
+                "Cette application retire le mot de passe et les restrictions de PDF " +
+                    "que vous êtes en droit de modifier. Le traitement se fait entièrement " +
+                    "sur l'appareil ; aucune donnée n'est envoyée en ligne.",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            Text("Bibliothèques open source utilisées",
+                style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+            BIBLIOTHEQUES.forEach { lib ->
+                Column(modifier = Modifier.padding(bottom = 4.dp)) {
+                    Text("${lib.nom} ${lib.version}",
+                        style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Medium)
+                    Text(lib.copyright, style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(lib.licence, style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary)
+                }
+            }
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            Text("Notice", style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold)
+            BlocTexte(NOTICE)
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            Text("Licence Apache 2.0 (texte intégral)",
+                style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+            BlocTexte(APACHE_2_0)
+
+            Spacer(Modifier.height(24.dp))
+        }
+    }
+}
+
+/** Affiche un texte long dans un cadre à fond atténué, en police à chasse fixe. */
+@Composable
+private fun BlocTexte(texte: String) {
+    Surface(
+        color = MaterialTheme.colorScheme.surfaceVariant,
+        shape = MaterialTheme.shapes.small,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Text(
+            texte,
+            style = MaterialTheme.typography.bodySmall.copy(
+                fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace
+            ),
+            modifier = Modifier.padding(12.dp)
+        )
     }
 }
 
